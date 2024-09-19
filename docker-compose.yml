@@ -1,0 +1,68 @@
+networks:
+    larasdtest-network:
+        driver: bridge
+
+services:
+    web:
+        container_name: larasdtest_nginx
+        build:
+            context: ./
+            dockerfile: web.dockerfile
+        volumes:
+            - ./:/var/www
+        ports:
+            - '1291:80'
+        networks:
+            - larasdtest-network
+        links:
+            - app
+
+    app:
+        container_name: larasdtest_app
+        build:
+            args:
+                user: sammy
+                uid: 1000
+            context: ./
+            dockerfile: app.dockerfile
+        restart: unless-stopped
+        ports:
+            - '1211:1211'
+            - '${VITE_PORT:-5111}:${VITE_PORT:-5111}'
+        working_dir: /var/www/
+        volumes:
+            - ./:/var/www
+        env_file: '.env'
+        networks:
+            - larasdtest-network
+        links:
+            - db
+
+    db:
+        image: mariadb:10.4
+        container_name: larasdtest_db
+        platform: linux/amd64 #for platform error on Apple M1 chips
+        restart: unless-stopped
+        environment:
+            MYSQL_DATABASE: ${DB_DATABASE}
+            MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+            MYSQL_USER: ${DB_USERNAME}
+        volumes:
+            - ./database:/docker-entrypoint-initdb.d
+        ports:
+            - '2222:3306'
+        networks:
+            - larasdtest-network
+
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin:5.2.1
+        restart: always
+        environment:
+            PMA_HOST: db
+            PMA_USER: ${DB_USERNAME}
+            PMA_PASSWORD: ${DB_PASSWORD}
+            UPLOAD_LIMIT: 300M
+        ports:
+            - '1314:80'
+        networks:
+            - larasdtest-network
