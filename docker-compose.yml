@@ -101,4 +101,4 @@ services:
         environment:
             - K6_OUT=influxdb=http://influxdb:8086/k6
         volumes:
-            - ./examples:/scripts
+            - ./scripts:/scripts

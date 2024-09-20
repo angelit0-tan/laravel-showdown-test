@@ -17,7 +17,7 @@ class BatchProcess implements ShouldQueue
     public $batchRequests;
     protected $fillable;
     public $tries = 3; // If fail, try again for 3 times
-    public $backoff = 10; // Seconds, to wait befre to retry the failed jobs
+    public $backoff = 10; // Seconds, to wait before to retry the failed jobs
 
     /**
      * Create a new job instance.
