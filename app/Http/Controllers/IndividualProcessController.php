@@ -11,7 +11,6 @@ class IndividualProcessController extends Controller
      * Process the individual requests
      */
     public function index(Request $request) {
-
         // Process the request in the queues
         IndividualProcess::dispatch($request->toArray());
     }

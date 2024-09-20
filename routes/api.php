@@ -5,9 +5,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BatchProcessController;
 use App\Http\Controllers\IndividualProcessController;
 
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:api');
+Route::middleware(['throttle:individual'])->group(function () {
+    Route::post('/individual', [IndividualProcessController::class, 'index']);
+});
 
-Route::post('/batch', [BatchProcessController::class, 'index']);
-Route::post('/individual', [IndividualProcessController::class, 'index']);
+Route::middleware(['throttle:batch'])->group(function () {
+    Route::post('/batch', [BatchProcessController::class, 'index']);
+});

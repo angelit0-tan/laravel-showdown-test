@@ -34,7 +34,6 @@ class IndividualProcess implements ShouldQueue
     public function handle(): void
     {
         $user = User::where('email', $this->data['email'])->first();
-        
         // Process only if user found
         if ($user) {
             // Filter and allow field to be updated if it's in the user fillable
