@@ -28,15 +28,7 @@ class UserFactory extends Factory
         // CET, CST, GMT+1
         $timezones = ['Europe/Paris', 'America/Chicago', 'Europe/London']; 
         $timezoneResult = $timezones[array_rand($timezones, 1)];
-        // \Log::debug(Timezone::where('iso', $abc)->firstOrFail());
-        // $userNames = array_column(TimeZones::map(), 'iso');
-        // $key = array_search('Asia/Shanghai', $userNames);
-        // if (!is_null($key)) {
-        //     \Log::debug(
-        //         TimeZones::map()[$key]
-        //     );
-        // }
-        
+
         return [
             'name' => fake()->name(),
             'firstname' => fake()->firstName(),
@@ -52,10 +44,10 @@ class UserFactory extends Factory
     /**
      * Indicate that the model's email address should be unverified.
      */
-    // public function unverified(): static
-    // {
-    //     return $this->state(fn (array $attributes) => [
-    //         'email_verified_at' => null,
-    //     ]);
-    // }
+    public function unverified(): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'email_verified_at' => null,
+        ]);
+    }
 }
