@@ -37,18 +37,18 @@ class UserUpdate extends Command
         // Then update with random details
         if ($id) {
             $user = User::findOrFail($id);
-            $user->firstname = $faker->firstname();
-            $user->lastname = $faker->lastname();
-            $user->timezone = TimeZones::map()[$timezone]['iso'];
+            $user->first_name = $faker->firstname();
+            $user->last_name = $faker->lastname();
+            $user->time_zone = TimeZones::map()[$timezone]['iso'];
             $user->save();
         } else {
 
             // If no user-id found in the argument
             // Find a random 1 user to update
             $user = User::inRandomOrder()->first();
-            $user->firstname = $faker->firstname();
-            $user->lastname = $faker->lastname();
-            $user->timezone = TimeZones::map()[$timezone]['iso'];
+            $user->first_name = $faker->firstname();
+            $user->last_name = $faker->lastname();
+            $user->time_zone = TimeZones::map()[$timezone]['iso'];
             $user->save();
         }
     }
