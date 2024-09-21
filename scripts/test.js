@@ -50,7 +50,6 @@ export function batch() {
         headers: {
           'Content-Type': 'application/json',
         },
-    
     }
 
     // Change the url with your ngrok
