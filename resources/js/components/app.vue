@@ -3,17 +3,17 @@
         <table class="border-collapse w-full text-sm dark:bg-slate-800 my-5">
             <thead>
                 <tr>
-                    <th class="border-b dark:border-slate-600 font-medium p-2 text-slate-400 dark:text-slate-200 text-left"></th>
-                    <th class="border-b dark:border-slate-600 font-medium p-2 text-slate-400 dark:text-slate-200 text-left">Name</th>
-                    <th class="border-b dark:border-slate-600 font-medium p-2-slate-400 dark:text-slate-200 text-left">Firstname</th>
-                    <th class="border-b dark:border-slate-600 font-medium p-2 text-slate-400 dark:text-slate-200 text-left">Lastname</th>
-                    <th class="border-b dark:border-slate-600 font-medium p-2 text-slate-400 dark:text-slate-200 text-left">Email</th>
-                    <th class="border-b dark:border-slate-600 font-medium p-2 text-slate-400 dark:text-slate-200 text-left">Timezone</th>
+                    <th class="border-b dark:border-slate-600"></th>
+                    <th class="border-b dark:border-slate-600 font-bold py-3 dark:text-slate-200 text-left">Name</th>
+                    <th class="border-b dark:border-slate-600 font-bold py-3 dark:text-slate-200 text-left">Firstname</th>
+                    <th class="border-b dark:border-slate-600 font-bold py-3 dark:text-slate-200 text-left">Lastname</th>
+                    <th class="border-b dark:border-slate-600 font-bold py-3 dark:text-slate-200 text-left">Email</th>
+                    <th class="border-b dark:border-slate-600 font-bold py-3 dark:text-slate-200 text-left">Timezone</th>
                 </tr>
             </thead>
-            <tbody class="bg-white dark:bg-slate-800">
+            <tbody class="dark:bg-slate-800">
                 <tr v-for="user in users" :key="user.id">
-                    <td class="border-b dark:border-slate-700 p-1">
+                    <td class="border-b dark:border-slate-700 text-center py-1">
                         <input type="checkbox" :id="user.id" v-model="user.is_selected"/>
                     </td>
                     <td class="border-b dark:border-slate-700 dark:text-slate-400">
@@ -41,8 +41,7 @@
             <div class="my-3">
                 <textarea rows="6" style="width: 100%;" v-model="batchRequests"/>
             </div>
-            <hr class="my-5"/>
-            <div class="flex gap-3 items-center">
+            <div class="flex gap-3 items-center my-5">
                 <select 
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-2/6 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     v-model="batchRequestPer">
@@ -63,8 +62,7 @@
             <div class="my-3">
                 <textarea rows="6" style="width: 100%;" v-model="individualRequests"/>
             </div>
-            <hr class="my-5"/>
-            <div class="flex gap-3 items-center">
+            <div class="flex gap-3 items-center my-5">
                 <select 
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-2/6 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     v-model="individualRequestPer">
