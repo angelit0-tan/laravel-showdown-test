@@ -28,7 +28,9 @@ export const options = {
  * This will test the indiviual api
  */
 export function indiviual() {
-    const response = http.post('http://host.docker.internal:1291/api/individual', 
+
+    // Change the url with your ngrok
+    const response = http.post('https://79f3-136-158-39-176.ngrok-free.app/api/individual', 
         {
             "email": "hazle38@example.com", // replace this email from the users table, to update the data
             "name": "Jannie Moreno",
@@ -50,8 +52,10 @@ export function batch() {
         },
     
     }
+
+    // Change the url with your ngrok
     const response = http.post(
-        'http://host.docker.internal:1291/api/batch', 
+        'https://79f3-136-158-39-176.ngrok-free.app/api/batch',
         payload, 
         params
     );
