@@ -51,5 +51,7 @@ class UserUpdate extends Command
             $user->time_zone = TimeZones::map()[$timezone]['iso'];
             $user->save();
         }
+
+        \Log::info("[{$user->id}] firstname: {$user->first_name}, timezone: '{$user->time_zone}'");
     }
 }
