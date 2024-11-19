@@ -80,7 +80,7 @@ services:
             - INFLUXDB_DB=k6
 
     grafana:
-        image: grafana/grafana:9.3.8
+        image: grafana/grafana:latest
         networks:
             - grafana
         ports:
@@ -89,8 +89,12 @@ services:
             - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
             - GF_AUTH_ANONYMOUS_ENABLED=true
             - GF_AUTH_BASIC_ENABLED=false
+            - GF_SERVER_SERVE_FROM_SUB_PATH=true
         volumes:
-            - ./grafana:/etc/grafana/provisioning/
+            #- ./grafana:/etc/grafana/provisioning/
+            - ./dashboards:/var/lib/grafana/dashboards
+            - ./grafana-dashboard.yaml:/etc/grafana/provisioning/dashboards/dashboard.yaml
+            - ./grafana-datasource.yaml:/etc/grafana/provisioning/datasources/datasource.yaml
 
     k6:
         image: grafana/k6:latest
@@ -101,4 +105,4 @@ services:
         environment:
             - K6_OUT=influxdb=http://influxdb:8086/k6
         volumes:
-            - ./examples:/scripts
+            - ./scripts:/scripts
